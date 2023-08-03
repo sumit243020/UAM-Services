@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Password</title>
+</head>
+<body>
+    <h1>Reset Your Password</h1>
+    <form action="/uam-service/email/reset-password" method="post">
+        <input type="hidden" id="email" name="email" th:value="${email}">
+        <!-- The email will be passed to the server as a hidden input field -->
+
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+
+        <input type="submit" value="Reset Password">
+    </form>
+</body>
+</html>
