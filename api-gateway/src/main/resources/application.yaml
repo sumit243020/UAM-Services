@@ -1,0 +1,38 @@
+server:
+  port: 8000
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone : http://localhost:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      routes:     
+        - id: UAM_SERVICE
+          uri: lb://UAM-SERVICE
+          predicates:
+            - Path=/uam-service/user/**
+                  
+        - id: EMAIL_SERVICE
+          uri: lb://EMAIL_SERVICE
+          predicates:
+            - Path=/mail/**
+            
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth-service/**
+       
+        - id: TEST-SERVICE
+          uri: lb://TEST-SERVICE
+          predicates:
+            - Path=/test-service/**   
+                 
+  application:
+    name: API-GATEWAY
